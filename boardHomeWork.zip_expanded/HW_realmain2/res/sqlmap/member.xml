@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="member">
+	<insert id="createMember" parameterClass="kr.or.ddit.member.vo.MemberVO">
+		INSERT INTO MEMBERS (
+				MEM_ID
+				,GRADE_CODE
+				,MEM_PASS
+				,MEM_NAME
+				,MEM_IN
+				,PROD_SELL
+				,MEM_GENDER
+				,MEM_EMAIL
+				,MEM_HP
+				,MEM_ADDR
+				,MEM_ZIP
+				,MEM_HEIGHT
+				,MEM_WEIGHT
+				,MEM_BMI
+				,MEM_OB
+				,MEM_SICK
+				,MEM_ORDER
+				,TRAINER_MEM_ID
+		) VALUES (
+			  #memId#
+			, 'G001'
+			, #memPass#
+			, #memName#
+			, #memIn#
+			, #prodSell#
+			, #memGender#
+			, #memEmail#
+			, #memHp#
+			, #memAddr#
+			, #memZip#
+			, #memHeight#
+			, #memWeight#
+			, (#memWeight#/(#memHeight#*#memHeight#))
+			, #memOb#
+			, #memSick#
+			, #memOrder#
+			, #trainerMemId#
+		)
+	</insert>
+	<update id="updateMember"></update>
+	
+	<select id="retrieveMember" parameterClass="String"
+	resultClass="kr.or.ddit.member.vo.MemberVO">
+		SELECT MEM_ID		memId
+				,GRADE_CODE		gradeCode
+				,MEM_PASS		memPass
+				,MEM_NAME		memName
+				,MEM_IN		memIn
+				,PROD_SELL		prodSell
+				,MEM_GENDER		memGender
+				,MEM_EMAIL		memEmail
+				,MEM_HP		memHp
+				,MEM_ADDR		memAddr
+				,MEM_ZIP		memZip
+				,MEM_HEIGHT		memHeight
+				,MEM_WEIGHT		memWeight
+				,MEM_BMI		memBmi
+				,MEM_OB		memOb
+				,MEM_SICK		memSick
+				,MEM_ORDER		memOrder
+				,TRAINER_MEM_ID 	trainerMemId              
+		FROM MEMBERS
+		WHERE MEM_ID = #memId#
+	</select>
+	
+	
+	
+	
+	<select id="getMemList" parameterClass="String"
+	resultClass="kr.or.ddit.member.vo.MemberVO">
+		SELECT MEM_ID		memId
+				,GRADE_CODE		gradeCode
+				,MEM_PASS		memPass
+				,MEM_NAME		memName
+				,MEM_IN		memIn
+				,PROD_SELL		prodSell
+				,MEM_GENDER		memGender
+				,MEM_EMAIL		memEmail
+				,MEM_HP		memHp
+				,MEM_ADDR		memAddr
+				,MEM_ZIP		memZip
+				,MEM_HEIGHT		memHeight
+				,MEM_WEIGHT		memWeight
+				,MEM_BMI		memBmi
+				,MEM_OB		memOb
+				,MEM_SICK		memSick
+				,MEM_ORDER		memOrder
+				,TRAINER_MEM_ID 	trainerMemId              
+		FROM MEMBERS
+		WHERE TRAINER_MEM_ID = #memId#
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<select id="loginMember"  parameterClass="kr.or.ddit.member.vo.MemberVO" resultClass="kr.or.ddit.member.vo.MemberVO">
+	
+		SELECT MEM_NAME             memName
+		FROM MEMBERS
+		WHERE MEM_ID = #memId#
+		AND MEM_PASS = #memPass#
+		
+	</select>
+	
+	
+	
+	
+	<select id="idFind"  parameterClass="kr.or.ddit.member.vo.MemberVO" resultClass="String">
+	
+		SELECT MEM_ID             memId
+		FROM MEMBERS
+		WHERE MEM_NAME = #memName#
+		AND MEM_EMAIL = #memEmail#
+		
+	</select>
+	
+	
+	
+	
+	<select id="idFind2"  parameterClass="kr.or.ddit.member.vo.MemberVO" resultClass="String">
+	
+		SELECT MEM_PASS             memPass
+		FROM MEMBERS
+		WHERE MEM_NAME = #memName#
+		AND MEM_EMAIL = #memEmail#
+		
+	</select>
+	
+	
+	
+	
+	<select id="getGrade"  parameterClass="String" resultClass="String">
+	
+		SELECT GRADE_CODE             gradeCode
+		FROM MEMBERS
+		WHERE MEM_ID = #memId#
+		
+	</select>
+	
+	
+	
+	<update id="memberInfoUpdate" parameterClass="kr.or.ddit.member.vo.MemberVO">
+			update MEMBERS
+			set MEM_NAME = #memName#
+				,MEM_IN = #memIn#
+				,MEM_EMAIL = #memEmail#
+				,MEM_HP = #memHp#
+				,MEM_HEIGHT = #memHeight#
+				,MEM_WEIGHT = #memWeight#
+				,MEM_OB = #memOb#
+				,MEM_SICK = #memSick#
+			where MEM_ID = #memId#
+	
+	</update>
+	
+	
+	
+	
+	
+	
+	<select id="retrieveMemberList" parameterClass="kr.or.ddit.member.vo.MemberVO" resultClass="kr.or.ddit.member.vo.MemberVO">
+		SELECT A.MEM_ID                memId             
+             , A.MEM_PASS              memPass           
+             , A.MEM_NAME              memName           
+             , TO_CHAR(MEM_BIR, 'yyyy-mm-dd')	memBir            
+             , A.MEM_ZIP               memZip            
+             , A.MEM_ADD1              memAdd1           
+             , A.MEM_ADD2              memAdd2           
+             , A.MEM_HP                memHp             
+             , A.MEM_MAIL              memMail           
+             , A.RECV_EMAIL_YN         recvEmailYn      
+             , A.MEM_JOB               memJob            
+             , B.CODE_NAME			   memjobName
+             , A.MEM_LIKE              memLike           
+             , A.MEM_MEMORIAL_TYPE     memMemorialType  
+             , A.MEM_MEMORIAL_DATE     memMemorialDate  
+             , NVL(MEM_MILEAGE, 0)     memMileage        
+             , A.MEM_COMMENT           memComment        
+             , A.MEM_DELETE            memDelete         
+          FROM TB_MEMBER A
+              ,TB_CODE B
+         WHERE 1=1
+           AND B.GROUP_CODE(+) = 'A02'
+           AND A.MEM_JOB = B.CODE(+)
+         <isNotEmpty property="memId">
+         AND MEM_ID LIKE '%'||#memId#||'%'
+         </isNotEmpty>
+         <isNotEmpty property="memName" prepend="AND">
+         MEM_NAME = #memName#
+         </isNotEmpty>
+	</select>
+	
+</sqlMap>

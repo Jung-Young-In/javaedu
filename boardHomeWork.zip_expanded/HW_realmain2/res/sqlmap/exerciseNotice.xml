@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="exerciseNotice">
+	<insert id="insertexerciseNotice" parameterClass="kr.or.ddit.exerciseNotice.vo.ExerciseNoticeVO">
+		INSERT INTO EXERCISENOTICE (
+				TRAINER_ID
+				,MEM_ID
+				,EXERCISE
+				,FOOD
+				,MEM_DATE
+		) VALUES (
+			 #trainerId#
+			,#memId# 
+			,#exercise# 
+			,#food#
+			,#memDate#
+		)
+	</insert>
+	
+	<select id="retrieveExerciseList" parameterClass="kr.or.ddit.exerciseNotice.vo.ExerciseNoticeVO" resultClass="kr.or.ddit.exerciseNotice.vo.ExerciseNoticeVO">
+		SELECT 
+				EXERCISE exercise
+				,FOOD food
+				,MEM_DATE memDate       
+          FROM EXERCISENOTICE
+         WHERE 1=1
+         <isNotEmpty property="memId">
+         AND MEM_ID LIKE '%'||#memId#||'%'
+         </isNotEmpty>
+         <isNotEmpty property="memDate" prepend="AND">
+         MEM_DATE LIKE '%'||#memDate#||'%'
+         </isNotEmpty>
+	</select> 
+	
+	
+	
+	
+<!-- 	<select id="retrieveMember" parameterClass="String" -->
+<!-- 	resultClass="kr.or.ddit.member.vo.MemberVO"> -->
+<!-- 		SELECT MEM_ID                memId              -->
+<!--              , MEM_PASS              memPass            -->
+<!--              , MEM_NAME              memName            -->
+<!--              , TO_CHAR(MEM_BIR, 'yyyy-mm-dd')	memBir             -->
+<!--              , MEM_ZIP               memZip             -->
+<!--              , MEM_ADD1              memAdd1            -->
+<!--              , MEM_ADD2              memAdd2            -->
+<!--              , MEM_HP                memHp              -->
+<!--              , MEM_MAIL              memMail            -->
+<!--              , RECV_EMAIL_YN         recvEmailYn       -->
+<!--              , MEM_JOB               memJob       -->
+<!-- 		FROM TB_MEMBER -->
+<!-- 		WHERE MEM_ID = #memId# -->
+<!-- 	</select> -->
+	
+	
+</sqlMap>

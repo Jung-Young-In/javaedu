@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="mission">
+	<insert id="insertmission" parameterClass="kr.or.ddit.mission.vo.missionVO">
+		INSERT INTO MISSION (
+				TRAINER_ID
+				,MEM_ID
+				,MEM_DATE
+				,EXER_MISSION1
+				,EXER_MISSION2
+				,EXER_MISSION3
+		) VALUES (
+			 #trainerId#
+			,#memId# 
+			,#memDate# 
+			,#exerMission1#
+			,#exerMission2#
+			,#exerMission3#
+		)
+	</insert>
+	
+	<select id="getMissionInfo" resultClass="kr.or.ddit.mission.vo.missionVO">
+		SELECT TRAINER_ID
+				,MEM_ID memId
+				,MEM_DATE memDate
+				,EXER_MISSION1 exerMission1
+				,EXER_MISSION2 exerMission2
+				,EXER_MISSION3 exerMission3
+		FROM   MISSION
+		WHERE  MEM_ID = #memId# 
+		AND    MEM_DATE = TO_CHAR(sysdate, 'YYYY-MM-DD')
+	</select>
+	
+</sqlMap>

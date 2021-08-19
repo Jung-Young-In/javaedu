@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="member">
+	<insert id="createMember" parameterClass="kr.or.ddit.member.vo.MemberVO">
+		INSERT INTO MEMBER (
+			  MEM_ID
+			, MEM_PASSWORD
+			, MEM_NAME
+			, MEM_BIRTH
+			, MEM_PHONE
+			, MEM_EMAIL
+			, MEM_ADDRESS
+		) VALUES (
+			  #memId#
+			, #memPassword#
+			, #memName#
+			, #memBirth#
+			, #memPhone#
+			, #memEmail#
+			, #memAddress#
+		)
+	</insert>
+	
+	<update id="updateMember"></update>
+	
+	<select id="retrieveMember" parameterClass="String" resultClass="kr.or.ddit.member.vo.MemberVO">
+		SELECT MEM_ID			memId
+			,  MEM_PASSWORD		memPassword
+			,  MEM_NAME			memName
+			,  MEM_BIRTH		memBirth
+			,  MEM_PHONE		memPhone
+			,  MEM_EMAIL		memEmail
+			,  MEM_ADDRESS		memAddress
+		FROM MEMBER
+		WHERE MEM_ID = #memId#
+	</select>
+	
+	<select id="loginMember" parameterClass="kr.or.ddit.member.vo.MemberVO" resultClass="kr.or.ddit.member.vo.MemberVO">
+		SELECT MEM_NAME		 memName
+		FROM MEMBER
+		WHERE MEM_ID	   = #memId#
+		AND   MEM_PASSWORD = #memPassword#
+	</select>
+	
+	<select id="retrieveMemberList" parameterClass="kr.or.ddit.member.vo.MemberVO" resultClass="kr.or.ddit.member.vo.MemberVO">
+		SELECT MEM_ID			memId
+			,  MEM_PASSWORD		memPassword
+			,  MEM_NAME			memName
+			,  MEM_BIRTH		memBirth
+			,  MEM_PHONE		memPhone
+			,  MEM_EMAIL		memEmail
+			,  MEM_ADDRESS		memAddress
+		FROM MEMBER
+		WHERE 1 = 1
+	<isNotEmpty property="memId">
+		AND MEM_ID LIKE '%'||#memId#||'%'
+	</isNotEmpty>
+	<isNotEmpty property="memName" prepend="AND"> 
+		MEM_NAME = #memName#
+	</isNotEmpty>
+	</select>
+</sqlMap>

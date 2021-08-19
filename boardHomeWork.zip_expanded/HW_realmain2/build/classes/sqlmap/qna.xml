@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="qna">
+	<insert id="insertQna" parameterClass="kr.or.ddit.qna.vo.QnaVO">
+		INSERT INTO QNA (
+				QNA_NUM
+				,MEM_ID
+				,QNA_TITLE
+				,QNA_CONTENT
+				,QNA_DATE
+				,QNA_REPLE
+				,QNA_COUNT
+				,QNA_PATH
+		) VALUES (
+			QNA_SEQ.NEXTVAL
+			,#memId#
+			,#qnaTitle#
+			,#qnaContent#
+			,SYSDATE
+			,#qnaReple# 
+			,#qnaCount# 
+			,#qnaPath#
+		)
+	</insert>
+	
+	
+	<update id="updateQna" parameterClass="kr.or.ddit.qna.vo.QnaVO" >
+			update QNA 
+				set QNA_TITLE = #qnaTitle#
+					 ,QNA_CONTENT = #qnaContent#
+				where QNA_NUM = #qnaNum#
+	</update>
+	
+	
+		<delete id="deleteQna" parameterClass="String">
+		
+		
+		delete from QNA where QNA_NUM = #qnaNum# 
+		
+		
+		</delete>
+	
+	
+	<resultMap class="kr.or.ddit.qna.vo.QnaVO" id="qnaMap">
+		
+			<result property="qnaNum" column="QNA_NUM"/>
+			<result property="memId" column="MEM_ID"/>
+			<result property="qnaTitle" column="QNA_TITLE"/>
+			<result property="qnaContent" column="QNA_CONTENT"/>
+			<result property="qnaDate" column="QNA_DATE"/>
+			<result property="qnaReple" column="QNA_REPLE"/>
+			<result property="qnaCount" column="QNA_COUNT"/>
+			<result property="qnaPath" column="QNA_PATH"/>
+		</resultMap>
+	
+	
+	
+	<select id="allListQna"  resultMap="qnaMap">
+		
+		select * from QNA 
+		
+		</select>
+	
+	
+	<select id="getQnaInfo" resultMap="qnaMap">
+	
+	select * from QNA where QNA_NUM = #qnaNum#
+	
+	</select>
+	
+	
+	
+	
+	
+	<!-- <select id="retrieveMember" parameterClass="String"
+	resultClass="kr.or.ddit.member.vo.MemberVO">
+		SELECT MEM_ID                memId             
+             , MEM_PASS              memPass           
+             , MEM_NAME              memName           
+             , TO_CHAR(MEM_BIR, 'yyyy-mm-dd')	memBir            
+             , MEM_ZIP               memZip            
+             , MEM_ADD1              memAdd1           
+             , MEM_ADD2              memAdd2           
+             , MEM_HP                memHp             
+             , MEM_MAIL              memMail           
+             , RECV_EMAIL_YN         recvEmailYn      
+             , MEM_JOB               memJob      
+		FROM TB_MEMBER
+		WHERE MEM_ID = #memId#
+	</select>
+	
+	<select id="retrieveMemberList" parameterClass="kr.or.ddit.member.vo.MemberVO" resultClass="kr.or.ddit.member.vo.MemberVO">
+		SELECT A.MEM_ID                memId             
+             , A.MEM_PASS              memPass           
+             , A.MEM_NAME              memName           
+             , TO_CHAR(MEM_BIR, 'yyyy-mm-dd')	memBir            
+             , A.MEM_ZIP               memZip            
+             , A.MEM_ADD1              memAdd1           
+             , A.MEM_ADD2              memAdd2           
+             , A.MEM_HP                memHp             
+             , A.MEM_MAIL              memMail           
+             , A.RECV_EMAIL_YN         recvEmailYn      
+             , A.MEM_JOB               memJob            
+             , B.CODE_NAME			   memjobName
+             , A.MEM_LIKE              memLike           
+             , A.MEM_MEMORIAL_TYPE     memMemorialType  
+             , A.MEM_MEMORIAL_DATE     memMemorialDate  
+             , NVL(MEM_MILEAGE, 0)     memMileage        
+             , A.MEM_COMMENT           memComment        
+             , A.MEM_DELETE            memDelete         
+          FROM TB_MEMBER A
+              ,TB_CODE B
+         WHERE 1=1
+           AND B.GROUP_CODE(+) = 'A02'
+           AND A.MEM_JOB = B.CODE(+)
+         <isNotEmpty property="memId">
+         AND MEM_ID LIKE '%'||#memId#||'%'
+         </isNotEmpty>
+         <isNotEmpty property="memName" prepend="AND">
+         MEM_NAME = #memName#
+         </isNotEmpty>
+	</select> -->
+	
+</sqlMap>

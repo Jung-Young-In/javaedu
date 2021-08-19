@@ -1,0 +1,100 @@
+#ptSideMenu {
+	float: left;
+	width: 250px; height: 1200px;
+}
+#ptSideMenu ul {
+	list-style: none;
+}
+#ptSideMenu ul li {
+	font-size: 30px;
+	font-style: inherit;
+	font-weight: bold;
+	margin-bottom: 150px;
+}
+#ptSideMenu ul li a :link {
+	text-decoration: none;
+	color: black;
+}
+#ptSideMenu ul li a :visited {
+	text-decoration: none;
+	color: black;
+}
+#ptSideMenu ul li a {
+	text-decoration: none;
+	color: black;
+}
+#ptVideo {
+	width: 300px;
+	float:left;
+	margin-right: 96px;
+}
+#ptVideo span {
+	font-size: 10px;
+	font-style: inherit;
+	font-weight: bold;
+	color: black;
+}
+#SideMenu ul li a {
+	text-decoration: none;
+	color: black;
+}
+#exerfoodContent {
+	width: 850px; height: 1200px;
+	float:left;
+}
+#exerKinds {
+	width: 880px;
+    height: 320px;
+}
+#upper fieldset div span {
+	text-decoration: none;
+	color: black;
+	font-size: 15px;
+	font-style: inherit;
+	font-weight: bold;
+}
+#middle fieldset div span {
+	text-decoration: none;
+	color: black;
+	font-size: 15px;
+	font-style: inherit;
+	font-weight: bold;
+}
+#under fieldset div span {
+	text-decoration: none;
+	color: black;
+	font-size: 15px;
+	font-style: inherit;
+	font-weight: bold;
+}
+#upper, #middle, #under {
+	float: left;
+	
+}
+#upper fieldset, #middle fieldset, #under fieldset {
+	margin-right: 130px;
+}
+#upper fieldset h2, #middle fieldset h2, #under fieldset h2 {
+	color: black;
+	font-style: inherit;
+	font-weight: bold;
+}
+#upper fieldset div span, #middle fieldset div span, #under fieldset div span {
+	color: black;
+	font-style: inherit;
+	font-weight: bold;
+}
+#food h1 {
+	margin-bottom: 30px;
+	font-style: inherit;
+	font-weight: bold;
+}
+#food p{
+	margin-right: 220px;
+	float:left;
+	list-style: none;
+	font-size: 30px;
+	font-style: inherit;
+	font-weight: bold;
+	
+}

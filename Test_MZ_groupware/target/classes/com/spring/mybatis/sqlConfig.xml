@@ -1,0 +1,17 @@
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+  
+<configuration>
+
+	<typeAliases>
+		<typeAlias type="java.lang.String" alias="str" />
+		<typeAlias type="java.lang.Integer" alias="int" />
+		
+		<typeAlias type="com.spring.dto.EmployeeVO" alias="emp" />
+		<typeAlias type="com.spring.dto.ApprovalVO" alias="approval" />
+		<typeAlias type="com.spring.dto.ReplyVO" alias="reply" />
+		
+	</typeAliases>
+  
+</configuration>

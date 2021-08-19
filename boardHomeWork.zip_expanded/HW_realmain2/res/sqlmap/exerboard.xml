@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="exerBoard">
+	<insert id="insertExerBoard" parameterClass="kr.or.ddit.exerBoard.vo.ExerBoardVO">
+		INSERT INTO BOARD (
+				BOARD_NUM
+				,MEM_ID
+				,BOARD_TITLE
+				,BOARD_CONTENT
+				,BOARD_DATE
+				,BOARD_REPLE
+				,BOARD_COUNT
+				,BOARD_PATH
+				,ATCH_FILE_ID
+		) VALUES (
+			BOARD_SEQ.NEXTVAL
+			,#memId#
+			,#exerBoardTitle#
+			,#exerBoardContent#
+			,SYSDATE
+			,#exerBoardReple# 
+			,#exerBoardCount# 
+			,#exerBoardPath#
+			,#atchFileId#
+		)
+	</insert>
+	
+	
+	<update id="updateExerBoard" parameterClass="kr.or.ddit.exerBoard.vo.ExerBoardVO" >
+			update BOARD 
+				set BOARD_TITLE = #exerBoardTitle#
+					 ,BOARD_CONTENT = #exerBoardContent#
+					  ,atch_file_id = #atchFileId#
+				where BOARD_NUM = #exerBoardNum#
+	</update>
+	
+	
+		<delete id="deleteExerBoard" parameterClass="String">
+		
+		
+		delete from BOARD where BOARD_NUM = #exerBoardNum# 
+		
+		
+		</delete>
+	
+	
+	<resultMap class="kr.or.ddit.exerBoard.vo.ExerBoardVO" id="exerBoardMap">
+		
+			<result property="exerBoardNum" column="BOARD_NUM"/>
+			<result property="memId" column="MEM_ID"/>
+			<result property="exerBoardTitle" column="BOARD_TITLE"/>
+			<result property="exerBoardContent" column="BOARD_CONTENT"/>
+			<result property="exerBoardDate" column="BOARD_DATE"/>
+			<result property="exerBoardReple" column="BOARD_REPLE"/>
+			<result property="exerBoardCount" column="BOARD_COUNT"/>
+			<result property="exerBoardPath" column="BOARD_PATH"/>
+		</resultMap>
+	
+	
+	
+	<select id="allListExerBoard"  resultMap="exerBoardMap">
+		
+		select * from BOARD 
+		
+		</select>
+	
+	
+	<select id="getExerBoardInfo" resultMap="exerBoardMap">
+	
+	select * from BOARD where BOARD_NUM = #boardNum#
+	
+	</select>
+	
+	
+	
+	
+	
+	
+	
+</sqlMap>

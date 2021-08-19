@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="prod">
+	
+	<resultMap class="kr.or.ddit.prod.vo.ProdVO" id="prodMap">
+		
+		<result property="prodNum" column="prod_num"/>
+		<result property="prodCategori" column="prod_categori"/>
+		<result property="prodName" column="prod_name"/>
+		<result property="prodChoice" column="prod_choice"/>
+		<result property="prodRemianQty" column="prod_remain_qty"/>
+		<result property="prodSell" column="prod_sell" />
+		<result property="prodPrice" column="prod_price" />
+		<result property="prodMemberPrice" column="prod_member_price" />
+		<result property="prodImgPath" column="prod_img_path" />
+		<result property="prodDetailInfo" column="prod_detail_info" />
+	
+	</resultMap>
+	
+<!-- 	상품조회하는 메서드 -->
+	<select id="getprodAll" resultMap="prodMap">
+		select * from market
+	</select>
+	
+<!--  상품등록하는 메서드 -->
+	<insert id="insertProd" parameterClass="kr.or.ddit.prod.vo.ProdVO">
+	
+		insert into market(prod_Num, prod_Name, prod_Choice, prod_Remain_Qty,prod_Sell,prod_Price,prod_Member_Price,prod_Img_Path,prod_Detail_Info)
+		values('#prodNum#', '#prodName#', '#prodChoice#', '#prodRemianQty#', '#prodSell#', '#prodPrice#', '#prodMemberPrice#', '#prodImgPath#', '#prodDetailInfo#');
+	
+	</insert>
+<!-- 상품상세조회 -->
+	
+	<select id="getProdInfo" parameterClass="String" resultClass="kr.or.ddit.prod.vo.ProdVO">
+		SELECT 
+		PROD_NUM	prodNum
+		,PROD_NAME	prodName
+		,PROD_CATEGORI	prodCategori
+		,PROD_CHOICE	prodChoice
+		,PROD_REMAIN_QTY	prodRemianQtyChoice
+		,PROD_SELL	prodSell
+		,PROD_PRICE	prodPrice
+		,PROD_MEMBER_PRICE	prodMemberPrice
+		,PROD_IMG_PATH	prodImgPath
+		,PROD_DETAIL_INFO	prodDetailInfo
+		FROM MARKET 
+		WHERE PROD_NUM = #prodNum#
+	</select>
+	
+<!-- 상품 카테고리 조회 -->
+
+	<select id="getProdCategori" resultMap="prodMap">
+		select * 
+		from market where prod_categori = #prodCategori#
+	</select>
+	
+<!-- 상품 검색 -->
+
+	<select id="getSearchProd"  parameterClass="kr.or.ddit.prod.vo.ProdVO"  resultMap="prodMap">
+		SELECT * 
+		FROM MARKET 
+		WHERE PROD_NAME LIKE '%' ||#prodName#||'%'
+	</select>	
+	
+	
+	
+</sqlMap>			

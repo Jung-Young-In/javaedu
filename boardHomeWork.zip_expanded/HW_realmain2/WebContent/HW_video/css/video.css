@@ -1,0 +1,91 @@
+#videoNav form{
+	margin-bottom: 20px;
+}
+#videoNav a {
+	margin-right: 50px;
+}
+#searchVideo {
+	width: 700px;
+}
+#searchImg{
+	background-color: white;
+	border-color: white;
+}
+#videoMenu {
+	width: 100%;
+	height: 50px;
+	padding-left: 160px
+}
+#videoMenu ul{
+	
+}
+#videoMenu ul li{
+	float:left;
+	list-style: none;
+	width: 20%;
+	margin-bottom: 15px;
+	font-size: 20px;
+	font-style: inherit;
+	font-weight: bold;
+	
+}
+#videoMenu ul li a :link {
+	text-decoration: none;
+	color: black;
+}
+#videoMenu ul li a :visited {
+	text-decoration: none;
+	color: black;
+}
+#videoMenu ul li a {
+	text-decoration: none;
+	color: black;
+}
+#videoMenu ul li a input {
+	background-color: white;
+	color:black;
+}
+#videoSideMenu {
+	
+	float:left;
+}
+#videoSideMenu ul {
+	list-style: none;
+	margin-right: 44px;
+}
+#videoSideMenu ul li {
+	font-size: 30px;
+	font-style: inherit;
+	font-weight: bold;
+	margin-bottom: 150px;
+}
+#videoSideMenu ul li a :link {
+	text-decoration: none;
+	color: black;
+}
+#videoSideMenu ul li a :visited {
+	text-decoration: none;
+	color: black;
+}
+#videoSideMenu ul li a {
+	
+	text-decoration: none;
+	color: black;
+}
+#ptVideo {
+	width: 300px;
+	float:left;
+	margin-right: 96px;
+}
+#ptVideo span {
+	font-size: 10px;
+	font-style: inherit;
+	font-weight: bold;
+	color: black;
+}
+#VideoKeyWard {
+	width: 755px;
+}
+input{
+	color:black;
+}

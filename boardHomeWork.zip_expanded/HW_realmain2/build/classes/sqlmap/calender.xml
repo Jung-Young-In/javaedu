@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="qna">
+	<insert id="insertcalender" parameterClass="kr.or.ddit.calender.vo.CalenderVO">
+		INSERT INTO EXERCISENOTICE (
+				TRAINER_ID
+				,MEM_ID
+				,EXERCISE
+				,FOOD
+				,MEM_DATE
+		) VALUES (
+			#trainerId#
+			#memId#
+			#exerCise#
+			#food#
+			#memDate#
+		
+		)
+	</insert>
+	
+	<select id="allListCalender"  resultClass	="kr.or.ddit.calender.vo.CalenderVO">
+		
+		SELECT 	TRAINER_ID trainerId
+				,MEM_ID memId
+				,EXERCISE exerCise
+				,FOOD food
+				,MEM_DATE memDate
+		FROM     EXERCISENOTICE
+		</select>
+	
+	
+	<select id="getQnaInfo" resultMap="qnaMap">
+	
+	select * from QNA where QNA_NUM = #qnaNum#
+	
+	</select>
+	
+	
+	
+	
+	
+	
+</sqlMap>

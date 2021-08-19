@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="video">
+		
+		<resultMap class="kr.or.ddit.video.vo.VideoVO" id="videoMap">
+		
+			<result property="videoNum" column="video_num"/>
+			<result property="videoName" column="video_name"/>
+			<result property="videoContent" column="video_content"/>
+			<result property="videoPath" column="video_path"/>
+			<result property="gradeCode" column="grade_code"/>
+		
+		</resultMap>
+		
+		<select id="selectVideoPathList" parameterClass="kr.or.ddit.video.vo.VideoVO" resultMap="videoMap">
+			SELECT VIDEO_NUM
+			     , VIDEO_NAME
+			     , VIDEO_CONTENT
+			     , VIDEO_PATH
+			     , GRADE_CODE
+			FROM   PTVIDEO 
+			WHERE  1=1
+			<isNotEmpty property="videoNum">
+			AND VIDEO_NUM LIKE '%' || #videoNum# || '%'
+			</isNotEmpty> 
+			<isNotEmpty property="videoName">
+			AND VIDEO_NAME LIKE '%' || #videoName# || '%'
+			</isNotEmpty>
+			<isNotEmpty property="videoContent">
+			AND VIDEO_CONTENT LIKE '%' || #videoContent# || '%' 
+			</isNotEmpty>
+			<isNotEmpty property="videoPath">
+			AND VIDEO_PATH LIKE '%' || #videoPath# || '%' 
+			</isNotEmpty>
+			AND GRADE_CODE LIKE '%' || 1 || '%' 
+		</select>
+		
+		<select id="selectPrimiumVideoPathList" parameterClass="kr.or.ddit.video.vo.VideoVO" resultMap="videoMap">
+			SELECT VIDEO_NUM
+			     , VIDEO_NAME
+			     , VIDEO_CONTENT
+			     , VIDEO_PATH
+			     , GRADE_CODE
+			FROM   PTVIDEO 
+			WHERE  1=1
+			<isNotEmpty property="videoNum">
+			AND VIDEO_NUM LIKE '%' || #videoNum# || '%'
+			</isNotEmpty> 
+			<isNotEmpty property="videoName">
+			AND VIDEO_NAME LIKE '%' || #videoName# || '%'
+			</isNotEmpty>
+			<isNotEmpty property="videoContent">
+			AND VIDEO_CONTENT LIKE '%' || #videoContent# || '%' 
+			</isNotEmpty>
+			<isNotEmpty property="videoPath">
+			AND VIDEO_PATH LIKE '%' || #videoPath# || '%' 
+			</isNotEmpty>
+			AND GRADE_CODE LIKE '%' || 2 || '%' 
+		</select>
+		
+		<resultMap class="kr.or.ddit.exerfood.vo.ExerVO" id="exerMap">
+			<result property="exeNum" column="exe_num"/>
+			<result property="exeName" column="exe_name"/>
+			<result property="exeContent" column="exe_content"/>
+		</resultMap>
+		
+		<select id="selectExerList" parameterClass="kr.or.ddit.exerfood.vo.ExerVO" resultMap="exerMap">
+			SELECT EXE_NUM
+			     , EXE_NAME
+			     , EXE_CONTENT
+			FROM   EXERCISE
+			<isNotEmpty property="exeName">
+			WHERE  EXE_NAME = #exeName#
+			</isNotEmpty> 
+		</select>
+		
+		<resultMap class="kr.or.ddit.exerfood.vo.FoodVO" id="foodMap">
+			<result property="foodNum" column="food_num"/>
+			<result property="foodName" column="food_name"/>
+			<result property="foodContent" column="food_content"/>
+			<result property="foodKcal" column="food_kcal"/>
+			<result property="foodFat" column="food_fat"/>
+			<result property="foodProtein" column="food_protein"/>
+			<result property="foodRice" column="food_rice"/>
+			<result property="foodSweet" column="food_sweet"/>
+		</resultMap>
+		
+		<select id="selectFoodList" parameterClass="kr.or.ddit.exerfood.vo.FoodVO" resultMap="foodMap">
+			SELECT FOOD_NUM
+			     , FOOD_NAME
+			     , FOOD_CONTENT
+			     , FOOD_KCAL
+			     , FOOD_FAT
+			     , FOOD_PROTEIN
+			     , FOOD_RICE
+			     , FOOD_SWEET
+			FROM   FOOD
+			<isNotEqual property="foodNum" compareValue="0">
+			WHERE  FOOD_NUM = #foodNum#
+			</isNotEqual>  
+		</select>
+</sqlMap>			
+
+
+
+
+

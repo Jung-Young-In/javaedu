@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+	PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+	"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="refle">
+
+	<resultMap class="kr.or.ddit.refle.vo.RefleVO" id="refleMap">
+		
+			<result property="refleNum" column="PRODREFLE_NUM"/>
+			<result property="prodNum" column="PROD_NUM"/>
+			<result property="prodRefleTitle" column="PRODREFLE_TITLE"/>
+			<result property="memId" column="MEM_ID"/>
+			<result property="prodRefleDate" column="PRODREFLE_DATE"/>
+			<result property="prodRefleContent" column="PRODREFLE_CONTENT"/>
+		</resultMap>
+
+	<insert id="insertRefle" parameterClass="kr.or.ddit.refle.vo.RefleVO">
+		INSERT INTO PROD_REFLE (
+				PRODREFLE_NUM 
+				,PROD_NUM 
+				,PRODREFLE_TITLE 
+				,MEM_ID 
+				,PRODREFLE_DATE 
+				,PRODREFLE_CONTENT 
+		) VALUES (
+			PRODREFLE_SEQ.NEXTVAL 
+			,#prodNum#
+			,#prodRefleTitle#
+			,#memId#
+			,sysdate
+			,#prodRefleContent#
+			)
+	</insert>
+	
+	
+	
+	
+</sqlMap>

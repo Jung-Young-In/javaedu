@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="Approval-Mapper">
+	<sql id="search">
+		<if test="searchType == 't'.toString()">
+			and app_title like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'c'.toString()">
+			and app_content like '%'||#{keyword}||'%'
+		</if>
+		<if test="searchType == 'tc'.toString()">
+			and (
+			app_content like '%'||#{keyword}||'%'
+			or
+			app_content like '%'||#{keyword}||'%'
+		</if>
+	</sql>
+	
+	<select id="selectSearchApprovalList" resultType="approval">
+		select *
+		from approval
+		where app_no is not null
+		<include refid="search" />
+		order by app_up_date desc
+	</select>
+	
+	<select id="selectSearchApprovalByCategory" resultType="approval">
+		select *
+		from approval
+		where app_no is not null
+		and app_status=#{appStatus}
+	</select>
+
+	<select id="selectSearchApprovalListCount" resultType="int">
+		select count(*)
+		from approval
+		where app_no is not null
+		<include refid="search" />
+		order by app_up_date desc
+	</select>	
+	
+	<select id="selectApprovalByAppNo" parameterType="int" resultType="approval">
+		select *
+		from approval
+		where app_no=#{appNo}
+	</select>
+	
+	<select id="selectApprovalSequenceNextValue" resultType="int">
+		select approval_seq.nextVal
+		from dual
+	</select>
+
+	<update id="insertApproval" parameterType="approval">
+		insert into
+		approval(app_no,emp_no,app_title,app_content)
+		values(#{appNo},#{empNo},#{appTitle},#{appContent})
+	</update>
+	
+	<update id="updateApproval" parameterType="approval">
+		update approval
+		set
+		app_title=#{appTitle},app_content=#{appContent}
+		where app_no=#{appNo}
+	</update>	
+	
+	<update id="deleteApproval" parameterType="int">
+		delete
+		from approval
+		where app_no=#{appNo}
+	</update>
+	
+	<select id="selectApprovalByFileName" resultType="approval">
+		select *
+		from approval
+		where app_content like '#'||#{fileName}||'#'
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

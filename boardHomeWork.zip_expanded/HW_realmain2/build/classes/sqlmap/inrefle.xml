@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap
+			PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"
+			"http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="inrefle">
+	
+	<resultMap class="kr.or.ddit.inrefle.vo.InRefleVO" id="inrefleMap">
+		
+			<result property="refleNum" column="PRODREFLE_NUM"/>
+			<result property="prodNum" column="PROD_NUM"/>
+			<result property="prodRefleTitle" column="PRODREFLE_TITLE"/>
+			<result property="memId" column="MEM_ID"/>
+			<result property="prodRefleDate" column="PRODREFLE_DATE"/>
+			<result property="prodRefleContent" column="PRODREFLE_CONTENT"/>
+		</resultMap>
+	
+<!-- 상품상세조회 -->
+	
+	<select id="getInRefle" parameterClass="String" resultClass="kr.or.ddit.inrefle.vo.InRefleVO">
+		SELECT 
+		PRODREFLE_NUM	refleNum
+		,PROD_NUM	prodNum
+		,PRODREFLE_TITLE	prodRefleTitle
+		,MEM_ID	memId
+		,PRODREFLE_DATE prodRefleDate
+		,PRODREFLE_CONTENT	PRODREFLE_CONTENT
+		FROM PROD_REFLE
+		WHERE PROD_NUM = #prodNum#
+	</select>
+	
+	
+	
+	
+</sqlMap>			

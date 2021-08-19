@@ -1,0 +1,121 @@
+#exerfoodSideMenu {
+	float: left;
+	width: 250px; height: 1800px;
+}
+#exerfoodSideMenu ul {
+	list-style: none;
+}
+#exerfoodSideMenu ul li {
+	font-size: 30px;
+	font-style: inherit;
+	font-weight: bold;
+	margin-bottom: 150px;
+}
+#exerfoodSideMenu ul li a :link {
+	text-decoration: none;
+	color: black;
+}
+#exerfoodSideMenu ul li a :visited {
+	text-decoration: none;
+	color: black;
+}
+#exerfoodSideMenu ul li a {
+	text-decoration: none;
+	color: black;
+}
+#exerfoodContent {
+	width: 850px; height: 1200px;
+	float:left;
+}
+#exerKinds {
+	width: 200px; height: 470px;
+}
+#upper fieldset div a {
+	text-decoration: none;
+	color: black;
+	font-size: 15px;
+	font-style: inherit;
+	font-weight: bold;
+}
+#upper fieldset div a :link {
+	text-decoration: none;
+	color: black;
+}
+#upper fieldset div a :visited {
+	text-decoration: none;
+	color: black;
+}
+#middle fieldset div a {
+	text-decoration: none;
+	color: black;
+	font-size: 15px;
+	font-style: inherit;
+	font-weight: bold;
+}
+#middle fieldset div a :link {
+	text-decoration: none;
+	color: black;
+}
+#middle fieldset div a :visited {
+	text-decoration: none;
+	color: black;
+}
+#under fieldset div a {
+	text-decoration: none;
+	color: black;
+	font-size: 15px;
+	font-style: inherit;
+	font-weight: bold;
+}
+#under fieldset div a :link {
+	text-decoration: none;
+	color: black;
+}
+#under fieldset div a :visited {
+	text-decoration: none;
+	color: black;
+}
+#exerDetail {
+	width: 300px; height: 470px;
+	font-size: 15px;
+	font-style: inherit;
+	font-weight: bold;
+}
+
+
+
+
+
+#foodDetail1 {
+	width: 850px; height: 330px;
+}
+#foodDetail1 div {
+	float: left;
+	width: 280px; 
+}
+#foodDetail1 div table {
+	font-size: 10px;
+}
+#foodDetail2 {
+	width: 850px; height: 330px;
+}
+#foodDetail2 div {
+	float: left;
+	width: 280px; 
+}
+#foodDetail2 div table {
+	font-size: 10px;
+}
+#foodDetail3 {
+	width: 850px; height: 330px;
+}
+#foodDetail3 div {
+	float: left;
+	width: 280px; 
+}
+#foodDetail3 div table {
+	font-size: 10px;
+}
+#foodKinds {
+	width: 300px; height: 600px;
+}

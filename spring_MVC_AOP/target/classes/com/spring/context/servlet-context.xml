@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<!-- mapping="/resources/** 은 url이고, location="/resources/"은 실제 소스 부분 -->
+	<!-- 이전에는 디폴트 서블릿에서 / 경로로 받음으로써 resources를 처리하던 부분을 이곳에서 한다는 의미 -->
+	<!-- handler Mapper는 내가 설정해둔 url만 처리하고 이 부분은 simpleUrlHandlerMapper 즉, 서블릿이 직접 처리해줌 -->
+	<!-- 즉, handlerMapper를 거치지 말고 위 내용을 처리해주라는 명령어가 resources(태그)임 -->
+	<!-- 그러므로 전 프로젝트에서 디폴트 서블릿 부분이 해결되어 .do패턴도 사용할 필요가 없게 됨 -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<beans:bean id="multipartResolver" 
+				class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+				p:defaultEncoding="utf-8"
+	/>
+	<!-- p:order="1"을 주게 되면 일단 일반 클래스로 된 view를 찾아보고 없으면  던지는 것을 InternalResourceViewResolver가 받게 됨-->
+	<!-- bean으로 등록된 것을 view로 사용하겠다는 의미이기 때문에  BeanNameViewResolver임-->
+	<beans:bean class="org.springframework.web.servlet.view.BeanNameViewResolver"
+				p:order="1" 
+	/>
+	
+	<context:component-scan base-package="com.spring.controller" />
+	
+	<interceptors>
+		<interceptor>
+			<!-- handlerMapper를 거쳐오는 url은 .do를 작성 안해도 되는데(쉽게 말해 controller에는 .do를 작성 안해도 됨) 아래는 handlerMapper를 거쳐오지 않기 때문에 그대로 .do까지 기술해줘야 함 -->
+			<mapping path="/**/regist.do"/>
+			<mapping path="/**/modify.do"/>
+			<beans:bean class="com.spring.interceptor.XSSInterceptor"></beans:bean>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/common/login.do"/>
+			<beans:bean class="com.spring.interceptor.LoginUserLogInterceptor"></beans:bean>
+		</interceptor>
+	</interceptors>
+	
+	<!-- 여기서 주는 id가 실제 view 이름이 되므로 중요함 -->
+	<beans:bean id="downloadFile" class="com.spring.view.FileDownloadView" />
+	
+</beans:beans>

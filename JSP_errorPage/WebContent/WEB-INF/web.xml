@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- web.xml은 루트 스키마에 무조건 web-app이 잡혀 있어야 서블릿이 읽음 -->
+<web-app>
+	<error-page>
+		<!-- 서버에러 -->
+		<error-code>500</error-code>
+		<location>/error/500.jsp</location>
+	</error-page>
+
+	<error-page>
+		<!-- 잘못된 요청 에러 -->
+		<error-code>404</error-code>
+		<location>/error/404.jsp</location>
+	</error-page>
+	
+	<error-page>
+		<exception-type>java.lang.ArithmeticException</exception-type>
+		<location>/error/exception_arithmetic.jsp</location>
+	</error-page>
+</web-app>

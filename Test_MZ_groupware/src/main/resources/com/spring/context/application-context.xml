@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="employeeDAO" class="com.spring.dao.EmployeeDAOImpl"
+		  p:sqlSession-ref="sqlSession"/>
+	<bean id="approvalDAO" class="com.spring.dao.ApprovalDAOImpl" 
+	      p:sqlSession-ref="sqlSession" />
+	<bean id="attachDAO" class="com.spring.dao.AttachDAOImpl" 
+		  p:sqlSession-ref="sqlSession"/>
+	<bean id="replyDAO" class="com.spring.dao.ReplyDAOImpl" 
+	      p:sqlSession-ref="sqlSession" />
+
+	<bean id="employeeService" class="com.spring.service.EmployeeServiceImpl"
+		  p:employeeDAO-ref="employeeDAO" />
+	<bean id="approvalService" class="com.spring.service.ApprovalServiceImpl" 
+		  p:approvalDAO-ref="approvalDAO"
+		  p:replyDAO-ref="replyDAO"/>
+</beans>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans>
+
+<!-- dataSource -->
+
+
+	<bean class="kr.or.ddit.mybatis.OracleMyBatisSqlSessionFactory" id="sqlSessionFactory"/>
+
+<!-- Repository Layer -->
+
+
+	<bean class="kr.or.ddit.dao.MenuDAOImpl" id="menuDAO"/>
+
+<!-- Service layer -->
+
+
+
+	<bean class="kr.or.ddit.service.MenuServiceImpl" id="menuService">
+
+		<property ref-value="sqlSessionFactory" name="sqlSessionFactory"/>
+
+		<property ref-value="menuDAO" name="menuDAO"/>
+
+	</bean>
+
+</beans>
